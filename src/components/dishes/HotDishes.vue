@@ -1,13 +1,8 @@
 <template>
-	<div id="app">
-		<SideBar></SideBar>
-
-		<div id="content">
-
-			<div>
-				
-				<router-view></router-view>
-          <ul class="boxList">
+	<div id="content">
+	<DishesList :fatherName='name'></DishesList>
+	
+			<ul class="boxList">
           <Menu-List>
             <img src="https://s1.ax1x.com/2018/12/10/FGhm2F.jpg" alt="" slot="imgsrc">
             <span slot="tilte">可乐鸡翅</span>
@@ -29,10 +24,29 @@
             <strong slot="price">48/份</strong>
           </Menu-List>
         </ul>
-			</div>
 		</div>
-	</div>
+		
 </template>
+
+<script>
+	import DishesList from './DishesList'
+	import MenuList from '../MenuList'
+	export default {
+		data(){
+			return {
+				dishes:[
+				
+				],
+				name:'热菜'	//给子组件传递一条数据，用于区分菜品的类别
+			}
+		},
+		components:{
+			DishesList,MenuList
+		}
+	}
+</script>
+
+
 /* {name:'可乐鸡翅',price:'22',classify:'热菜',img:'https://s1.ax1x.com/2018/12/10/FGhm2F.jpg'},
 	{name:'红烧排骨',price:'48',classify:'热菜',img:'https://s1.ax1x.com/2018/12/10/FGhKKJ.jpg'},
 	{name:'糖醋里脊',price:'30',classify:'热菜',img:'https://s1.ax1x.com/2018/12/10/FGhnv4.jpg'},
@@ -43,41 +57,3 @@
 	{name:'可口可乐',price:'5',classify:'饮料',img:'https://s1.ax1x.com/2018/12/14/FUpzfx.jpg'},
 	{name:'酸辣汤',price:'14',classify:'汤',img:'https://s1.ax1x.com/2018/12/14/FUpH6U.jpg'},
 	{name:'啤酒',price:'12',classify:'其它',img:'https://s1.ax1x.com/2018/12/14/FUpTpV.jpg'}, */
-<script>
-	import SideBar from './components/SideBar'
-import MenuList from './components/MenuList'
-	export default {
-		components:{	//导入进来的组件要放到components里面
-			SideBar,MenuList
-		}
-	}
-</script>
-
-<style>
-body,p{
-	margin: 0;
-}
-body{
-	background: url(./assets/images/bg.jpg) center top no-repeat;
-}
-ul{
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-a{
-	text-decoration: none;
-}
-
-#app{
-	display: flex;
-	width: 100%;
-}
-.logo{
-	height: 120px;
-}
-#content{
-	width: 100%;
-	position: relative;
-}
-</style>
